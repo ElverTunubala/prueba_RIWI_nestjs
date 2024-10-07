@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { PlayersModule } from './players/players.module';
+import { TeamsModule } from './teams/teams.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { PlayersModule } from './players/players.module';
     AuthModule,
     UsersModule,
     PlayersModule,
+    TeamsModule,
     ],
   controllers: [],
   providers: [],
