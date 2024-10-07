@@ -1,5 +1,6 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RolePlayers } from "../players.role";
+import { Team } from "src/teams/entities/team.entity";
 
 export class Player {
     @PrimaryGeneratedColumn('uuid')
@@ -16,4 +17,8 @@ export class Player {
 
     @Column({default: true}) 
     status: boolean;
+
+    @ManyToMany(() => Team, (team) => team.players)
+    @JoinTable({ name: 'Player_Team' }) 
+    teams: Team[];
 }

@@ -5,8 +5,6 @@ import { UpdatePlayerDto } from './dto/update-player.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guards';
 import { RolesGuard } from '../auth/guards/roles.guards';
 import { Roles } from '../common/decorators/roles.decorators';
-import { plainToInstance } from 'class-transformer';
-import { Player } from './entities/player.entity';
 
 @Controller('players')
 @UseGuards(JwtAuthGuard, RolesGuard) 
@@ -18,11 +16,10 @@ export class PlayersController {
     return this.playersService.create(createPlayerDto);
   }
 
-  @Roles('admin', 'user') // Permite acceso a 'admin' y 'user' para ver todos los jugadores
+  @Roles('admin', 'user') 
   @Get()
   async findAll() {
-    const players = await this.playersService.findAll();
-    return plainToInstance(Player, players); // Se utiliza la serialización para mantener la estructura
+    return this.playersService.findAll();
   }
 
   @Roles('admin', 'user')
@@ -31,7 +28,7 @@ export class PlayersController {
     return this.playersService.findOne(id);
   }
 
-  @Roles('admin') // Solo 'admin' puede actualizar la información de los jugadores
+  @Roles('admin') 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePlayerDto: UpdatePlayerDto) {
     return this.playersService.update(id, updatePlayerDto);
