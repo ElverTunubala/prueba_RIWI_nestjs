@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { PlayersModule } from './players/players.module';
 import { TeamsModule } from './teams/teams.module';
 import { TournamentsModule } from './tournaments/tournaments.module';
+import { MatchsModule } from './matchs/matchs.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { TournamentsModule } from './tournaments/tournaments.module';
     PlayersModule,
     TeamsModule,
     TournamentsModule,
+    MatchsModule,
     ],
   controllers: [],
   providers: [],
