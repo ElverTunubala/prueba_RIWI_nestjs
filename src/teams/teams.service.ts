@@ -4,7 +4,7 @@ import { In, Repository } from 'typeorm';
 import { Team } from './entities/team.entity';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { Player } from '../players/entities/player.entity';
-import { Tournament } from './tournament.entity';
+import { Tournament } from '../tournaments/entities/tournament.entity';
 
 @Injectable()
 export class TeamsService {

@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
 import { Player } from '../../players/entities/player.entity';
-import { Tournament } from './tournament.entity';
+import { Tournament } from '../../tournaments/entities/tournament.entity';
 
 export class Team {
     @PrimaryGeneratedColumn('uuid')
@@ -16,6 +16,6 @@ export class Team {
     players: Player[];
 
     @ManyToMany(() => Tournament, (tournament) => tournament.teams)
-    @JoinTable({ name: 'Team_Tournament' }) // Tabla intermedia para Team y Tournament
+    @JoinTable({ name: 'Team_Tournament' }) 
     tournaments: Tournament[];
 }
