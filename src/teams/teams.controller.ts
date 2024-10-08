@@ -2,7 +2,8 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@ne
 import { TeamsService } from './teams.service';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { Team } from './entities/team.entity';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('teams')
 @Controller('teams')
 export class TeamsController {
   constructor(private readonly teamsService: TeamsService) {}

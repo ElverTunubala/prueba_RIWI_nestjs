@@ -5,7 +5,8 @@ import { UpdatePlayerDto } from './dto/update-player.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guards';
 import { RolesGuard } from '../auth/guards/roles.guards';
 import { Roles } from '../common/decorators/roles.decorators';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('players')
 @Controller('players')
 @UseGuards(JwtAuthGuard, RolesGuard) 
 export class PlayersController {

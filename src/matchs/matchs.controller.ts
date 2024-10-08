@@ -2,7 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, I
 import { MatchesService } from './matchs.service';
 import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('matches')
 @Controller('matches')
 export class MatchesController {
   constructor(private readonly matchesService: MatchesService) {}

@@ -7,11 +7,11 @@ export class CreateTournamentDto {
     name: string;
 
     @IsNotEmpty()
-    @IsDate()
+    @IsString()
     startDate: Date;
 
     @IsNotEmpty()
-    @IsDate()
+    @IsString()
     endDate: Date;
 
     @IsNotEmpty()
@@ -19,6 +19,6 @@ export class CreateTournamentDto {
     status: RoleTournament;
     
     @IsArray()
-    teams: string[]; 
+    teams?: string[]; 
 }
 

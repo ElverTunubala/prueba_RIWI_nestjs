@@ -9,21 +9,21 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
-      transform: true,
+      transform: false,
     }),
   );
   //Config Swagger to API Documentation
   const config = new DocumentBuilder()
     .addBearerAuth()
-    .setTitle('Products API')
+    .setTitle('Play API')
     .setDescription(
-      'This is a product marketing application.',
+      'This is a paly application.',
     )
     .setVersion('1.0')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('products', app, document);
+  SwaggerModule.setup('play', app, document);
   
   await app.listen(3000);
 }

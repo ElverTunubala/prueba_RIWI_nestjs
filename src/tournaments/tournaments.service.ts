@@ -23,7 +23,7 @@ export class TournamentsService {
     // Verificar y asociar equipos si se proporcionan
     if (createTournamentDto.teams) {
       const teams = await this.teamRepository.findBy({
-        id: In(createTournamentDto.teams), // Usar In para buscar por múltiples IDs
+        id: In(createTournamentDto.teams), 
       });
       newTournament.teams = teams; // Asignar los equipos encontrados
     }
@@ -36,7 +36,7 @@ export class TournamentsService {
 
 async findAll(): Promise<Tournament[]> {
     try {
-      return await this.tournamentRepository.find({ relations: ['teams'] }); // Carga equipos relacionados
+      return await this.tournamentRepository.find({ relations: ['teams'] }); 
     } catch (error) {
       throw new InternalServerErrorException('Error finding tournaments', error.message);
     }
