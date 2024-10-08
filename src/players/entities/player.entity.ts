@@ -1,7 +1,8 @@
-import { Column, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RolePlayers } from "../players.role";
 import { Team } from "src/teams/entities/team.entity";
 
+@Entity()
 export class Player {
     @PrimaryGeneratedColumn('uuid')
     id: string;

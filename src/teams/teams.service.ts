@@ -97,7 +97,7 @@ export class TeamsService {
             team.tournaments = foundTournaments; // Asignar los torneos encontrados
         }
 
-        return await this.teamRepository.save(team); // Guardar el equipo actualizado
+        return await this.teamRepository.save(team); 
     } catch (error) {
         if (error instanceof NotFoundException) {
             throw error;

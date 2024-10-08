@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, AfterInsert } from 'typeorm';
 import { Tournament } from '../../tournaments/entities/tournament.entity';
 import { Team } from '../../teams/entities/team.entity';
+import { Result } from 'src/results/entities/result.entity';
 
 @Entity()
 export class Match {
@@ -27,5 +28,8 @@ export class Match {
 
     @ManyToOne(() => Tournament, (tournament) => tournament.matches, {
     onDelete: 'CASCADE'})
-    tournament: Tournament; 
+    tournament: Tournament;
+
+    @OneToMany(() => Result, (result) => result.match)
+    results: Result[]; 
 }

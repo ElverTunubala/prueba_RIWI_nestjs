@@ -13,6 +13,6 @@ export class CreatePlayerDto {
     role: RolePlayers;
 
     @IsBoolean()
-    @IsOptional() // Opcional ya que tiene un valor por defecto en la entidad
+    @IsOptional() 
     status?: boolean = true;
 }

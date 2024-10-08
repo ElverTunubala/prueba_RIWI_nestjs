@@ -3,7 +3,8 @@ import { TournamentsService } from './tournaments.service';
 import { CreateTournamentDto } from './dto/create-tournament.dto';
 import { UpdateTournamentDto } from './dto/update-tournament.dto';
 import { Tournament } from './entities/tournament.entity';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('tournaments')
 @Controller('tournaments') 
 export class TournamentsController {
   constructor(private readonly tournamentsService: TournamentsService) {}

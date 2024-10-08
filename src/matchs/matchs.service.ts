@@ -6,6 +6,7 @@ import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
 import { Team } from '../teams/entities/team.entity';
 import { Tournament } from '../tournaments/entities/tournament.entity';
+import { Result } from 'src/results/entities/result.entity';
 
 @Injectable()
 export class MatchesService {
@@ -18,6 +19,9 @@ export class MatchesService {
 
     @InjectRepository(Tournament)
     private readonly tournamentRepository: Repository<Tournament>,
+
+    @InjectRepository(Result)
+    private readonly resultRepository: Repository<Result>,
   ) {}
 
   async create(createMatchDto: CreateMatchDto): Promise<Match> {
@@ -48,13 +52,40 @@ export class MatchesService {
         teamB,
         tournament,
       });
+      const savedMatch = await this.matchRepository.save(newMatch);
+      
+      // Crear el resultado automáticamente basado en el puntaje
+      await this.createResultFromMatch(savedMatch);
 
-      return await this.matchRepository.save(newMatch);
+      return savedMatch;
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
       throw new InternalServerErrorException('Error creating match', error.message);
+    }
+  }
+  async createResultFromMatch(match: Match): Promise<void> {
+    try {
+      // Determinar el equipo ganador y perdedor basándose en el puntaje
+      const winner = match.scoreTeamA > match.scoreTeamB ? match.teamA : match.teamB;
+      const loser = match.scoreTeamA > match.scoreTeamB ? match.teamB : match.teamA;
+
+      // Crear el resultado
+      const newResult = this.resultRepository.create({
+        matchName: match.name,
+        match: match,
+        winner: winner,
+        loser: loser,
+        scoreWinner: match.scoreTeamA > match.scoreTeamB ? match.scoreTeamA : match.scoreTeamB,
+        scoreLoser: match.scoreTeamA > match.scoreTeamB ? match.scoreTeamB : match.scoreTeamA,
+        pointsDifference: Math.abs(match.scoreTeamA - match.scoreTeamB),
+      });
+
+      
+      await this.resultRepository.save(newResult);
+    } catch (error) {
+      throw new InternalServerErrorException('Error creating result from match', error.message);
     }
   }
 

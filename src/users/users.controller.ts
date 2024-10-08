@@ -7,7 +7,8 @@ import { RolesGuard } from '../auth/guards/roles.guards';
 import { Roles } from '../common/decorators/roles.decorators';
 import { plainToInstance } from 'class-transformer';
 import { UserEntity } from './entities/user.entity';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('users')
 @Controller('users')
 @UseGuards(JwtAuthGuard, RolesGuard)//verifica si hay token en todo el crud
 export class UsersController {

@@ -1,8 +1,9 @@
-import { PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany, Entity } from 'typeorm';
 import { Team } from '../../teams/entities/team.entity'; 
 import { RoleTournament } from '../tournament.role';
 import { Match } from 'src/matchs/entities/match.entity';
 
+@Entity()
 export class Tournament {
     @PrimaryGeneratedColumn('uuid')
     id: string;
