@@ -18,16 +18,24 @@ export class TournamentsService {
 
   async create(createTournamentDto: CreateTournamentDto): Promise<Tournament> {
   try {
-    const newTournament = this.tournamentRepository.create();
+    console.log('Creating tournament with data:', createTournamentDto);
+
+    const newTournament = this.tournamentRepository.create({
+      name:createTournamentDto.name,
+      startDate:createTournamentDto.name,
+      endDate:createTournamentDto.endDate,
+      status:createTournamentDto.status
+    });
 
     // Verificar y asociar equipos si se proporcionan
     if (createTournamentDto.teams) {
       const teams = await this.teamRepository.findBy({
         id: In(createTournamentDto.teams), 
       });
+      console.log("somos equipos",teams)
       newTournament.teams = teams; // Asignar los equipos encontrados
     }
-
+    console.log("soy lo que se guardara",newTournament)
     return await this.tournamentRepository.save(newTournament);
   } catch (error) {
     throw new InternalServerErrorException('Error creating tournament', error.message);

@@ -12,15 +12,14 @@ export class Tournament {
     name: string; 
 
     @Column()
-    startDate: Date;
+    startDate: string;
 
     @Column()
-    endDate: Date; 
+    endDate: string;
 
     @ManyToMany(() => Team, (team) => team.tournaments)
-    @JoinTable()
-    teams: Team[]; 
-
+    teams: Team[];
+    
     @Column({type: 'enum',enum: RoleTournament})
     status: RoleTournament;
 

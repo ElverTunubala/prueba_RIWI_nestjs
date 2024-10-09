@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsUUID, IsString, IsNumber, IsDate, IsNotEmpty} from 'class-validator';
 
 export class CreateMatchDto {
@@ -6,6 +7,7 @@ export class CreateMatchDto {
     name: string;
 
     @IsDate()
+    @Type(() => Date)
     @IsNotEmpty()
     date: Date;
 

@@ -11,7 +11,7 @@ export class Result {
     matchName: string; // Nombre del partido (referencial)
 
     @ManyToOne(() => Match, (match) => match.results, { onDelete: 'CASCADE' })
-    match: Match; 
+    match: Match;
 
     @ManyToOne(() => Team, { nullable: false })
     @JoinColumn({ name: 'winnerTeamId' }) 

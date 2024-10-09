@@ -23,7 +23,7 @@ export class TeamsService {
     try {
         const newTeam = this.teamRepository.create({
             name: createTeamDto.name,
-            manager: createTeamDto.manager, 
+            manager: createTeamDto.manager,
         });
 
         // Verificar y asociar jugadores si se proporcionan
@@ -84,7 +84,7 @@ export class TeamsService {
         // Verificar y asociar jugadores
         if (players) {
             const foundPlayers = await this.playerRepository.findBy({
-                id: In(players), 
+                id: In(players),
             });
             team.players = foundPlayers; // Asignar los jugadores encontrados
         }
@@ -92,7 +92,7 @@ export class TeamsService {
         // Verificar y asociar torneos
         if (tournaments) {
             const foundTournaments = await this.tournamentRepository.findBy({
-                id: In(tournaments), 
+                id: In(tournaments),
             });
             team.tournaments = foundTournaments; // Asignar los torneos encontrados
         }

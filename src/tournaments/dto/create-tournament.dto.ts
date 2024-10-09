@@ -2,23 +2,24 @@ import { IsArray, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString } from "class
 import { RoleTournament } from "../tournament.role";
 
 export class CreateTournamentDto {
+    
     @IsNotEmpty()
     @IsString()
     name: string;
 
     @IsNotEmpty()
     @IsString()
-    startDate: Date;
+    startDate:  string;
 
     @IsNotEmpty()
     @IsString()
-    endDate: Date;
+    endDate:  string;
 
     @IsNotEmpty()
     @IsEnum(RoleTournament)
     status: RoleTournament;
     
     @IsArray()
-    teams?: string[]; 
+    teams?: string[];
 }
 

@@ -12,7 +12,7 @@ export class Match {
     name: string; // Nombre del partido (por ejemplo, "Equipo A vs Equipo B")
 
     @Column({ type: 'date' })
-    date: Date; 
+    date: Date;
 
     @Column()
     scoreTeamA: number; 
